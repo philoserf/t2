@@ -1,0 +1,6 @@
+---
+name: "checks"
+description: "checks for lint and style issues"
+runs:
+  using: "docker"
+  image: "Dockerfile"

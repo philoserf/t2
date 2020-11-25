@@ -1,0 +1,12 @@
+---
+name: checks
+on: push
+jobs:
+  checks:
+    name: checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: check lint and style
+        uses: ./.github/actions/check

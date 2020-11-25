@@ -1,0 +1,40 @@
+---
+# https://taskfile.dev
+version: "3"
+
+tasks:
+  default:
+    deps: [check]
+
+  setup:
+    silent: true
+    status:
+      - test $(command -v prettier)
+      - test $(command -v yamllint)
+      - test $(command -v markdownlint)
+      - test $(command -v eksctl)
+      - test $(command -v kubectl)
+    cmds:
+      - echo "Please install the required commands prettier, yamllint, markdownlint, eksctl, and kubectl"  && exit 1
+
+  check:
+    desc: check for lint and style issues
+    deps: [setup]
+    cmds:
+      - prettier --list-different --ignore-unknown **/*
+      - yamllint --strict .
+      - markdownlint **/*.md
+
+  prep:
+    desc: fix 'easy' lint and style issues
+    deps: [setup]
+    cmds:
+      - prettier --write --ignore-unknown **/*
+      - markdownlint --fix **/*.md
+
+  bootstrap:
+    desc: create an eks cluster and install the flux2 gitops toolkit
+    deps: [setup]
+    cmds:
+      - eksctl create cluster --config-file cluster.yaml
+      - kubectl apply --kustomize=bootstrap/

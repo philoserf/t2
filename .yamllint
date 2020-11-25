@@ -1,0 +1,14 @@
+---
+extends: default
+yaml-files:
+  - ".github/**/*.yml"
+  - "**/*.yaml"
+  - "Taskfile.yml"
+  - ".yamllint"
+  - ".prettierrc"
+  - ".markdownlint.yaml"
+
+rules:
+  line-length: disable
+  document-start:
+    level: warning

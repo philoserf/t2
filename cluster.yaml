@@ -1,0 +1,40 @@
+---
+kind: ClusterConfig
+apiVersion: eksctl.io/v1alpha5
+metadata:
+  name: demo
+  region: us-east-2
+  version: "1.18"
+  tags:
+    cluster: demo
+cloudwatch:
+  clusterLogging:
+    enableTypes: ["*"]
+iam:
+  withOIDC: true
+
+managedNodeGroups:
+  - name: default-worker-ng-1
+    instanceType: t3.large
+    minSize: 2
+    maxSize: 10
+    desiredCapacity: 2
+    volumeSize: 80
+    ssh:
+      allow: true
+    labels:
+      subsplash.io/role: default-worker
+    tags:
+      subsplash.io/role: default-worker
+    iam:
+      withAddonPolicies:
+        albIngress: true
+        autoScaler: true
+        certManager: true
+        ebs: true
+        efs: true
+        externalDNS: true
+        imageBuilder: true
+
+addons:
+  - name: vpc-cni
