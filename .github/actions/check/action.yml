@@ -1,4 +1,3 @@
----
 name: "checks"
 description: "checks for lint and style issues"
 runs:
