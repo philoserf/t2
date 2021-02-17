@@ -1,14 +1,14 @@
----
 extends: default
+
 yaml-files:
-  - ".github/**/*.yml"
-  - "**/*.yaml"
-  - "Taskfile.yml"
-  - ".yamllint"
-  - ".prettierrc"
-  - ".markdownlint.yaml"
+  - '*.yaml'
+  - '*.yml'
+  - '.yamllint'
 
 rules:
   line-length: disable
-  document-start:
-    level: warning
+  braces:
+    max-spaces-inside: 1
+  indentation:
+    spaces: consistent
+  document-start: disable
