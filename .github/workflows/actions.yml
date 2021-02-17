@@ -7,5 +7,7 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+      - name: markdownlint-cli2-action
+        uses: DavidAnson/markdownlint-cli2-action@v1.0.1
       - name: check lint and style
         uses: ./.github/actions/check
