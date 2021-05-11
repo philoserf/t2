@@ -26,4 +26,4 @@ spec:
       interval: 30m
   values:
     autoDiscovery:
-      clusterName: demo
+      clusterName: flux-push-demo
