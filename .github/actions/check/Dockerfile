@@ -1,4 +1,4 @@
-FROM alpine:3.13
+FROM alpine:3.14
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN apk add --no-cache curl npm py-pip \
   && sh -c "$(curl -ssL https://taskfile.dev/install.sh)" -- -d \
